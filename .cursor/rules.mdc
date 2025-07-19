@@ -1,0 +1,171 @@
+---
+alwaysApply: true
+---
+
+# GitHub Repository Information Extraction Rules
+
+## 目的
+
+GitHub リポジトリの URL が提供された際に、自動的にリポジトリ情報を抽出して README のテーブルに追加する作業を効率化する。
+
+## 作業フロー
+
+### 1. リポジトリ情報の確認
+
+- 提供された GitHub リポジトリ URL から以下の情報を抽出：
+  - プロジェクト名（リポジトリ名）
+  - リポジトリ URL
+  - プロジェクトの説明（description）
+  - 利用言語
+
+### 2. Cursor Rules ファイルの存在確認
+
+- リポジトリ内に`.cursor/rules`ファイルが存在するか確認（`.cursorrules`は非推奨）
+- 存在しない場合は、その旨を報告
+
+### 3. 情報の整理とテーブル形式での出力
+
+以下の形式で情報を整理：
+
+```
+| プロジェクト名 | リポジトリ | 説明 | 言語 |
+|---------------|-----------|------|-------------------|
+| [プロジェクト名] | [リポジトリURL] | [説明（50文字以内）] | [言語一つだけ] |
+```
+
+### 4. README ファイルへの追加 d
+
+- 抽出した情報を README へ追記
+- 日本語と英語両方で修正
+
+## 使用するコマンド例
+
+### GitHub API を使用した情報取得
+
+```bash
+curl -s "https://api.github.com/repos/[owner]/[repo]" | jq '{name: .name, description: .description, language: .language, stargazers_count: .stargazers_count, updated_at: .updated_at, html_url: .html_url}'
+```
+
+### Cursor Rules ファイルの存在確認
+
+```bash
+curl -s "https://api.github.com/repos/[owner]/[repo]/contents/.cursor/rules"
+```
+
+## 出力形式
+
+### 成功時
+
+```
+✅ リポジトリ情報を抽出しました：
+
+| プロジェクト名 | リポジトリ | 説明 | 言語/フレームワーク |
+|---------------|-----------|------|-------------------|
+| [プロジェクト名] | [リポジトリURL] | [説明] | [技術] |
+
+📝 READMEに追加しますか？
+```
+
+### 失敗時
+
+```
+❌ エラーが発生しました：
+- [エラーの詳細]
+- 手動で情報を確認してください
+```
+
+## 注意事項
+
+- 説明は 50 文字以内に要約
+- 主要な言語/フレームワークのみを記載（上位 3 つまで）
+- Cursor Rules ファイル（`.cursor/rules`）が存在しないリポジトリは除外
+- 情報の正確性を確認してから README に追加
+- 注意：`.cursorrules`は非推奨です。`.cursor/rules`を使用してください
+
+# GitHub Repository Information Extraction Rules
+
+## 目的
+
+GitHub リポジトリの URL が提供された際に、自動的にリポジトリ情報を抽出して README のテーブルに追加する作業を効率化する。
+
+## 作業フロー
+
+### 1. リポジトリ情報の確認
+
+- 提供された GitHub リポジトリ URL から以下の情報を抽出：
+  - プロジェクト名（リポジトリ名）
+  - リポジトリ URL
+  - プロジェクトの説明（description）
+  - 主要な言語/フレームワーク
+  - スター数
+  - 最終更新日
+
+### 2. Cursor Rules ファイルの存在確認
+
+- リポジトリ内に`.cursor/rules`ファイルが存在するか確認（`.cursorrules`は非推奨）
+- 存在しない場合は、その旨を報告
+
+### 3. 情報の整理とテーブル形式での出力
+
+以下の形式で情報を整理：
+
+```
+| プロジェクト名 | リポジトリ | 説明 | 言語/フレームワーク |
+|---------------|-----------|------|-------------------|
+| [プロジェクト名] | [リポジトリURL] | [説明（50文字以内）] | [主要技術] |
+```
+
+### 4. README ファイルへの追加提案
+
+- 抽出した情報を README のテーブルに追加するためのコード変更を提案
+- 適切なカテゴリ（フロントエンド、バックエンド、フルスタック、その他）に分類
+
+## 使用するコマンド例
+
+### GitHub API を使用した情報取得
+
+```bash
+curl -s "https://api.github.com/repos/[owner]/[repo]" | jq '{name: .name, description: .description, language: .language, stargazers_count: .stargazers_count, updated_at: .updated_at, html_url: .html_url}'
+```
+
+### リポジトリの README 確認
+
+```bash
+curl -s "https://raw.githubusercontent.com/[owner]/[repo]/main/README.md" | head -20
+```
+
+### Cursor Rules ファイルの存在確認
+
+```bash
+curl -s "https://api.github.com/repos/[owner]/[repo]/contents/.cursor/rules"
+```
+
+## 出力形式
+
+### 成功時
+
+```
+✅ リポジトリ情報を抽出しました：
+
+| プロジェクト名 | リポジトリ | 説明 | 言語/フレームワーク |
+|---------------|-----------|------|-------------------|
+| [プロジェクト名] | [リポジトリURL] | [説明] | [技術] |
+
+📝 READMEに追加しますか？
+```
+
+### 失敗時
+
+```
+❌ エラーが発生しました：
+- [エラーの詳細]
+- 手動で情報を確認してください
+```
+
+## 注意事項
+
+- 説明は 50 文字以内に要約
+- 主要な言語/フレームワークのみを記載（上位 3 つまで）
+- Cursor Rules ファイル（`.cursor/rules`）が存在しないリポジトリは除外
+- 情報の正確性を確認してから README に追加
+- 注意：`.cursorrules`は非推奨です。`.cursor/rules`を使用してください
