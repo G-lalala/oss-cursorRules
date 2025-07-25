@@ -15,6 +15,7 @@ A collection of projects that have Cursor Rules (`.cursor/rules`) prepared on Gi
 | Supabase                 | [supabase/supabase](https://github.com/supabase/supabase)                                 | PostgreSQL development platform for web, mobile, and AI apps | TypeScript, MDX, JavaScript |
 | vecto3d                  | [lakshaybhushan/vecto3d](https://github.com/lakshaybhushan/vecto3d)                       | A super simple tool to convert your SVG's to 3D models       | TypeScript                  |
 | awesome-cursor-rules-mdc | [sanjeed5/awesome-cursor-rules-mdc](https://github.com/sanjeed5/awesome-cursor-rules-mdc) | generate awesome Cursor Rules .mdc files                     | Python                      |
+| superdesign              | [superdesigndev/superdesign](https://github.com/superdesigndev/superdesign)               | Cursor for design - Open Source                              | TypeScript                  |
 
 ### How to Add
 
@@ -42,6 +43,7 @@ GitHub に Cursor Rules (`.cursor/rules`) が用意されているプロジェ�
 | Supabase                 | [supabase/supabase](https://github.com/supabase/supabase)                                 | PostgreSQL 開発プラットフォーム。Web、モバイル、AI アプリ構築用 | TypeScript, MDX, JavaScript |
 | vecto3d                  | [lakshaybhushan/vecto3d](https://github.com/lakshaybhushan/vecto3d)                       | SVG を 3D モデルに変換するシンプルなツール                      | TypeScript                  |
 | awesome-cursor-rules-mdc | [sanjeed5/awesome-cursor-rules-mdc](https://github.com/sanjeed5/awesome-cursor-rules-mdc) | Cursor Rules .mdc ファイルの作成 OSS                            | Python                      |
+| superdesign              | [superdesigndev/superdesign](https://github.com/superdesigndev/superdesign)               | Cursor for design - Open Source                                 | TypeScript                  |
 
 ### 追加方法
 
